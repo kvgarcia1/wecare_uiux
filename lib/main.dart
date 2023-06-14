@@ -1,7 +1,11 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unicons/unicons.dart';
+import './generator.dart';
+import './profile.dart';
+// import './dashboard.dart';
+// import './session.dart';
+import './messages.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,30 +24,11 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFF9F9F9)),
           scaffoldBackgroundColor: Color(0xFFF9F9F9),
+          fontFamily: 'ProximaNova',
         ),
         home: MyHomePage(),
       ),
     );
-  }
-}
-
-class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-
-  void getNext() {
-    current = WordPair.random();
-    notifyListeners();
-  }
-  
-  var favorites = <WordPair>[];
-
-  void toggleFavorite() {
-    if (favorites.contains(current)) {
-      favorites.remove(current);
-    } else {
-      favorites.add(current);
-    }
-    notifyListeners();
   }
 }
 
@@ -60,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ProfilePage(),
   Placeholder(),
   GeneratorPage(),
-  Placeholder(),
+  MessagesPage(),
 ];
 
   @override
@@ -77,7 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
               'assets/images/AppLogo.png'
             ),
           ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: (){},
+            )
+          ],
           backgroundColor: Color(0xFFF9F9F9),
+          foregroundColor: Color(0xFF7B7B7B),
           scrolledUnderElevation: 0.0,
         ),
       ),
@@ -123,79 +115,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class GeneratorPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    var pair = appState.current;
-
-    IconData icon;
-    if (appState.favorites.contains(pair)) {
-      icon = Icons.favorite;
-    } else {
-      icon = Icons.favorite_border;
-    }
-
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          BigCard(pair: pair),
-          SizedBox(height: 10),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  appState.toggleFavorite();
-                },
-                icon: Icon(icon),
-                label: Text('Like'),
-              ),
-              SizedBox(width: 10),
-              ElevatedButton(
-                onPressed: () {
-                  appState.getNext();
-                },
-                child: Text('Next'),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BigCard extends StatelessWidget {
-  const BigCard({
-    super.key,
-    required this.pair,
-  });
-
-  final WordPair pair;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context); 
-    final style = theme.textTheme.displayMedium!.copyWith(
-      color: theme.colorScheme.onPrimary,
-    );
-
-    return Card(
-      color: theme.colorScheme.primary,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Text(
-          pair.asLowerCase,
-          style: style,
-          semanticsLabel: "${pair.first} ${pair.second}",
-        ),
-      ),
-    );
-  }
-}
-
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -204,6 +123,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -244,9 +164,10 @@ class HomePage extends StatelessWidget {
                         text: TextSpan(
                           style: TextStyle(
                             color: Color(0xFF7B7B7B),
+                            fontFamily: 'ProximaNova'
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: "Upcoming Session", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.bold, fontSize: 16)),
+                            TextSpan(text: "Upcoming Session", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 16)),
                             TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
                             TextSpan(text: "No upcoming session. Contact your designated physician to book a session schedule."),
                           ]
@@ -265,7 +186,7 @@ class HomePage extends StatelessWidget {
                           foregroundColor: Colors.white,
                           side: BorderSide.none, shape: const StadiumBorder(),
                         ),
-                        child: Text('Start', style: TextStyle(fontWeight: FontWeight.bold)),
+                        child: Text(' Start ', style: TextStyle(fontWeight: FontWeight.w700)),
                       )
                     )
                   ],
@@ -304,9 +225,10 @@ class HomePage extends StatelessWidget {
                               text: TextSpan(
                                 style: TextStyle(
                                   color: Color(0xFF7B7B7B),
+                                  fontFamily: 'ProximaNova'
                                 ),
                                 children: <TextSpan>[
-                                  TextSpan(text: "Connectivity", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.bold, fontSize: 16)),
+                                  TextSpan(text: "Connectivity", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 16)),
                                   TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
                                   TextSpan(text: "Device is connected."),
                                 ]
@@ -314,7 +236,7 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            alignment: Alignment.bottomLeft,
+                            alignment: Alignment.bottomCenter,
                             child: ElevatedButton(
                               onPressed: () {
                                 debugPrint('1');
@@ -324,7 +246,7 @@ class HomePage extends StatelessWidget {
                                 foregroundColor: Color(0xFF7B7B7B),
                                 side: BorderSide.none, shape: const StadiumBorder(),
                               ),
-                              child: Text('Connect', style: TextStyle(fontWeight: FontWeight.bold)),
+                              child: Text('Connect', style: TextStyle(fontWeight: FontWeight.w700)),
                             )
                           )
                         ],
@@ -362,9 +284,10 @@ class HomePage extends StatelessWidget {
                               text: TextSpan(
                                 style: TextStyle(
                                   color: Color(0xFF7B7B7B),
+                                  fontFamily: 'ProximaNova'
                                 ),
                                 children: <TextSpan>[
-                                  TextSpan(text: "Journal", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.bold, fontSize: 16)),
+                                  TextSpan(text: "Journal", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 16)),
                                   TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
                                   TextSpan(text: "You have not written a journal entry yet."),
                                 ]
@@ -372,17 +295,17 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            alignment: Alignment.bottomLeft,
+                            alignment: Alignment.bottomCenter,
                             child: ElevatedButton(
                               onPressed: () {
-                                debugPrint('1');
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => GeneratorPage()));
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Color(0xFFFF0000),
                                 foregroundColor: Colors.white,
                                 side: BorderSide.none, shape: const StadiumBorder(),
                               ),
-                              child: Text('Create New Entry', style: TextStyle(fontWeight: FontWeight.bold)),
+                              child: Text('New Entry', style: TextStyle(fontWeight: FontWeight.w700)),
                             )
                           )
                         ],
@@ -420,9 +343,10 @@ class HomePage extends StatelessWidget {
                         text: TextSpan(
                           style: TextStyle(
                             color: Color(0xFF7B7B7B),
+                            fontFamily: 'ProximaNova',
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: "Calendar", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.bold, fontSize: 16)),
+                            TextSpan(text: "Calendar", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 16)),
                             TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
                             TextSpan(text: "View upcoming session."),
                           ]
@@ -435,105 +359,6 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  SizedBox(
-                    width: 120,
-                    height: 120,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: const Icon(Icons.account_circle_outlined, size: 120)) //change code to profile pic from dtbs
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.yellow),
-                      child: const Icon(
-                        Icons.home,
-                        color: Colors.black,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),              
-              Text("Kristine Mae Garcia", style: Theme.of(context).textTheme.headlineMedium),
-              Text("garcia.kristinemae@gmail.com", style: Theme.of(context).textTheme.bodyMedium),
-              const SizedBox(height: 20),
-
-              // Edit Profile
-              SizedBox(
-                width: 200,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.yellow,
-                    side: BorderSide.none, shape: const StadiumBorder()
-                  ),
-                  child: const Text("Edit Profile",
-                  style: TextStyle(color: Colors.black)),
-                ),
-              ),
-              const SizedBox(height: 30),
-              const Divider(),
-              const SizedBox(height: 10),
-
-              // MENU
-              ProfileMenu(),
-              ProfileMenu(),
-              ProfileMenu(),
-              ProfileMenu(),
-              ProfileMenu(),
-              ProfileMenu(),
-              ProfileMenu(),
-              ProfileMenu(),
-              ProfileMenu(),
-              ProfileMenu(),
-              ProfileMenu(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class ProfileMenu extends StatelessWidget {
-  const ProfileMenu({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Colors.green.withOpacity(0.1),
-        ),
-        child: const Icon(Icons.settings),
       ),
     );
   }
