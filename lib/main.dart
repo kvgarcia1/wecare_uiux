@@ -4,7 +4,7 @@ import 'package:unicons/unicons.dart';
 import './generator.dart';
 import './profile.dart';
 // import './dashboard.dart';
-// import './session.dart';
+import './session.dart';
 import './messages.dart';
 
 void main() {
@@ -43,8 +43,8 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _pages = <Widget>[
   HomePage(),
   ProfilePage(),
-  Placeholder(),
   GeneratorPage(),
+  SessionPage(),
   MessagesPage(),
 ];
 
@@ -80,6 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color(0xFFF9F9F9),
         selectedItemColor: Color(0xFF56AEFF),
         unselectedItemColor: Color(0xFF7B7B7B),
+        selectedFontSize: 16,
+        unselectedFontSize: 14,
         elevation: 0.0,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -167,9 +169,9 @@ class HomePage extends StatelessWidget {
                             fontFamily: 'ProximaNova'
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: "Upcoming Session", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 16)),
+                            TextSpan(text: "Upcoming Session", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 17)),
                             TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
-                            TextSpan(text: "No upcoming session. Contact your designated physician to book a session schedule."),
+                            TextSpan(text: "No upcoming session. Contact your designated physician to book a session schedule.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 13)),
                           ]
                         )
                       ),
@@ -228,9 +230,9 @@ class HomePage extends StatelessWidget {
                                   fontFamily: 'ProximaNova'
                                 ),
                                 children: <TextSpan>[
-                                  TextSpan(text: "Connectivity", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 16)),
+                                  TextSpan(text: "Connectivity", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 17)),
                                   TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
-                                  TextSpan(text: "Device is connected."),
+                                  TextSpan(text: "Device is connected.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 13)),
                                 ]
                               )
                             ),
@@ -287,9 +289,9 @@ class HomePage extends StatelessWidget {
                                   fontFamily: 'ProximaNova'
                                 ),
                                 children: <TextSpan>[
-                                  TextSpan(text: "Journal", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 16)),
+                                  TextSpan(text: "Journal", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 17)),
                                   TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
-                                  TextSpan(text: "You have not written a journal entry yet."),
+                                  TextSpan(text: "You have not written a journal entry yet.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 13)),
                                 ]
                               )
                             ),
@@ -346,9 +348,9 @@ class HomePage extends StatelessWidget {
                             fontFamily: 'ProximaNova',
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: "Calendar", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 16)),
+                            TextSpan(text: "Calendar", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 17)),
                             TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
-                            TextSpan(text: "View upcoming session."),
+                            TextSpan(text: "View upcoming session.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 13)),
                           ]
                         )
                       ),

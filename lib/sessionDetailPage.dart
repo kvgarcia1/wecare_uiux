@@ -6,12 +6,12 @@ class ChatMessage{
   ChatMessage({required this.messageContent, required this.messageType});
 }
 
-class ChatDetailPage extends StatefulWidget{
+class SessionDetailPage extends StatefulWidget{
   @override
-  State<ChatDetailPage> createState() => _ChatDetailPageState();
+  State<SessionDetailPage> createState() => _SessionDetailPageState();
 }
 
-class _ChatDetailPageState extends State<ChatDetailPage> {
+class _SessionDetailPageState extends State<SessionDetailPage> {
   List<ChatMessage> messages = [
     ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),
     ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
