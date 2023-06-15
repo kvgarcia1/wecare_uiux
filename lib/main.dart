@@ -6,6 +6,7 @@ import './profile.dart';
 // import './dashboard.dart';
 import './session.dart';
 import './messages.dart';
+import './currentSession.dart';
 
 void main() {
   runApp(MyApp());
@@ -181,8 +182,8 @@ class HomePage extends StatelessWidget {
                       // padding: const EdgeInsets.only(left: 0.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          debugPrint('1');
-                        },
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentSessionPage()));
+                              },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFFFF0000),
                           foregroundColor: Colors.white,
