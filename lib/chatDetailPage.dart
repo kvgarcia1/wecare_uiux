@@ -3,7 +3,7 @@ import './models/chatMessageModel.dart';
 
 class ChatDetailPage extends StatefulWidget{
   @override
-  _ChatDetailPageState createState() => _ChatDetailPageState();
+  State<ChatDetailPage> createState() => _ChatDetailPageState();
 }
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
@@ -19,9 +19,9 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
+        // elevation: 0,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFF9F9F9),
         flexibleSpace: SafeArea(
           child: Container(
             padding: EdgeInsets.only(right: 16),
@@ -31,12 +31,12 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   onPressed: (){
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back,color: Colors.black,),
+                  icon: Icon(Icons.arrow_back,color: Color(0xFF7B7B7B),),
                 ),
                 SizedBox(width: 2,),
                 CircleAvatar(
-                  backgroundImage: NetworkImage("<https://randomuser.me/api/portraits/men/5.jpg>"),
                   maxRadius: 20,
+                  backgroundImage: AssetImage('assets/images/userImage1.jpg'),
                 ),
                 SizedBox(width: 12,),
                 Expanded(
@@ -44,13 +44,13 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("Kriss Benwat",style: TextStyle( fontSize: 16 ,fontWeight: FontWeight.w600),),
+                      Text("Jane Russel",style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600, fontFamily: 'ProximaNova', color: Color(0xFF7B7B7B))),
                       SizedBox(height: 6,),
-                      Text("Online",style: TextStyle(color: Colors.grey.shade600, fontSize: 13),),
+                      Text("Online",style: TextStyle(color: Color(0xFF7B7B7B), fontSize: 13)),
                     ],
                   ),
                 ),
-                Icon(Icons.settings,color: Colors.black54,),
+                Icon(Icons.settings,color: Color(0xFF7B7B7B)),
               ],
             ),
           ),
@@ -72,7 +72,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: (messages[index].messageType  == "receiver"?Colors.grey.shade200:Colors.blue[200]),
+                      color: (messages[index].messageType  == "receiver"?Color(0xFFE7E9EC):Color(0xFFA0D9F6)),
                     ),
                     padding: EdgeInsets.all(16),
                     child: Text(messages[index].messageContent, style: TextStyle(fontSize: 15),),
@@ -87,7 +87,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               padding: EdgeInsets.only(left: 10,bottom: 10,top: 10),
               height: 60,
               width: double.infinity,
-              color: Colors.white,
+              color: Color(0xFFF9F9F9),
               child: Row(
                 children: <Widget>[
                   GestureDetector(
@@ -97,10 +97,10 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                       height: 30,
                       width: 30,
                       decoration: BoxDecoration(
-                        color: Colors.lightBlue,
+                        color: Color(0xFFA0D9F6),
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Icon(Icons.add, color: Colors.white, size: 20, ),
+                      child: Icon(Icons.add, color: Color(0xFFF9F9F9), size: 20, ),
                     ),
                   ),
                   SizedBox(width: 15,),
@@ -108,7 +108,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: "Write message...",
-                        hintStyle: TextStyle(color: Colors.black54),
+                        hintStyle: TextStyle(color: Color(0xFF37393C)),
                         border: InputBorder.none
                       ),
                     ),
@@ -116,9 +116,9 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   SizedBox(width: 15,),
                   FloatingActionButton(
                     onPressed: (){},
-                    child: Icon(Icons.send,color: Colors.white,size: 18,),
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color(0xFFA0D9F6),
                     elevation: 0,
+                    child: Icon(Icons.send,color: Color(0xFFF9F9F9),size: 18,),
                   ),
                 ],
                 
