@@ -40,9 +40,9 @@ class _ConversationListState extends State<ConversationList> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(widget.name, style: TextStyle(fontSize: 16),),
+                          Text(widget.name, style: TextStyle(fontFamily:'SansSerif', fontSize: 16),),
                           SizedBox(height: 6,),
-                          Text(widget.messageText,style: TextStyle(fontSize: 13,color: Colors.grey.shade600, fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),),
+                          Text(widget.messageText,style: TextStyle(fontFamily:'SansSerif', fontSize: 14,color: Colors.grey.shade600, fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),),
                         ],
                       ),
                     ),
@@ -50,7 +50,7 @@ class _ConversationListState extends State<ConversationList> {
                 ],
               ),
             ),
-            Text(widget.time,style: TextStyle(fontSize: 12,fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),),
+            Text(widget.time,style: TextStyle(fontSize: 13,fontFamily: 'OpenSans', fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),),
           ],
         ),
       ),

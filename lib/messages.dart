@@ -12,15 +12,16 @@ class ChatUsers{
 class MessagesPage extends StatefulWidget {
   const MessagesPage({Key? key}) : super(key: key);
 
+
   @override
   State<MessagesPage> createState() => _MessagesPageState();
 }
 
 class _MessagesPageState extends State<MessagesPage> {
   List<ChatUsers> chatUsers = [
-    ChatUsers(name: "Dr. Jane Russel", messageText: "Awesome Setup", imageURL: "assets/images/userImage1.jpg", time: "Now"),
-    ChatUsers(name: "Dr. Gladys Murphy", messageText: "That's Great", imageURL: "assets/images/userImage2.jpg", time: "Yesterday"),
-    ChatUsers(name: "Dr. Jorge Henry", messageText: "Hey where are you?", imageURL: "assets/images/userImage3.jpg", time: "1 Jun"),
+    ChatUsers(name: "Dr. Jane Russel", messageText: "Got this, Doc! See you later!", imageURL: "assets/images/userImage1.jpg", time: "Now"),
+    ChatUsers(name: "Dr. Gladys Murphy", messageText: "This is noted!", imageURL: "assets/images/userImage2.jpg", time: "Yesterday"),
+    ChatUsers(name: "Dr. Jorge Henry", messageText: "Click the following link to join", imageURL: "assets/images/userImage3.jpg", time: "1 Jun"),
     // ChatUsers(name: "Philip Fox", messageText: "Busy! Call me in 20 mins", imageURL: "images/userImage4.jpeg", time: "28 Mar"),
     // ChatUsers(name: "Debra Hawkins", messageText: "Thankyou, It's awesome", imageURL: "images/userImage5.jpeg", time: "23 Mar"),
     // ChatUsers(name: "Jacob Pena", messageText: "will update you in evening", imageURL: "images/userImage6.jpeg", time: "17 Mar"),
@@ -42,8 +43,8 @@ class _MessagesPageState extends State<MessagesPage> {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Search...",
-                  hintStyle: TextStyle(color: Color(0xFF7B7B7B)),
-                  prefixIcon: Icon(Icons.search,color: Color(0xFF7B7B7B), size: 20,),
+                  hintStyle: TextStyle(fontFamily:'OpenSans',color:Color(0xFF7B7B7B), fontSize: 15),
+                  prefixIcon: Icon(Icons.search,color: Color(0xFF7B7B7B), size: 25,),
                   filled: true,
                   fillColor: Color(0xFFE7E9EC),
                   contentPadding: EdgeInsets.all(8),

@@ -7,6 +7,7 @@ import './profile.dart';
 import './session.dart';
 import './messages.dart';
 import './currentSession.dart';
+import './journal.dart';
 
 void main() {
   runApp(MyApp());
@@ -81,8 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color(0xFFF9F9F9),
         selectedItemColor: Color(0xFF56AEFF),
         unselectedItemColor: Color(0xFF7B7B7B),
-        selectedFontSize: 16,
-        unselectedFontSize: 14,
+        selectedFontSize: 15,
+        unselectedFontSize: 15,
         elevation: 0.0,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -141,7 +142,7 @@ class HomePage extends StatelessWidget {
                 alignment: Alignment.center,
                 margin: const EdgeInsets.all(5.0),
                 padding: const EdgeInsets.all(20.0),
-                height: 180,
+                height: 205,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white,
@@ -160,7 +161,7 @@ class HomePage extends StatelessWidget {
                       child: Image.asset('assets/images/session.png'),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      width: MediaQuery.of(context).size.width * 0.6,
                       alignment: Alignment.topLeft,
                       child: RichText(
                         textAlign: TextAlign.justify,
@@ -170,16 +171,20 @@ class HomePage extends StatelessWidget {
                             fontFamily: 'ProximaNova'
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: "Upcoming Session", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 17)),
+                            TextSpan(text: "Upcoming Session", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w600, fontSize: 20)),
                             TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
-                            TextSpan(text: "No upcoming session. Contact your designated physician to book a session schedule.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 13)),
+                            TextSpan(text: "You have a scheduled session today. Click the button below to proceed to Session tab.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 15)),
                           ]
                         )
                       ),
                     ),
+
+
                     Container(
                       alignment: Alignment.bottomLeft,
-                      // padding: const EdgeInsets.only(left: 0.0),
+                      height:250,
+                      //padding: const EdgeInsets.only(left: 0.0),
+                      
                       child: ElevatedButton(
                         onPressed: () {
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentSessionPage()));
@@ -189,7 +194,7 @@ class HomePage extends StatelessWidget {
                           foregroundColor: Colors.white,
                           side: BorderSide.none, shape: const StadiumBorder(),
                         ),
-                        child: Text(' Start ', style: TextStyle(fontWeight: FontWeight.w700)),
+                        child: Text('   Start   ', style: TextStyle(fontFamily:'OpenSans', fontSize:15)),
                       )
                     )
                   ],
@@ -203,7 +208,7 @@ class HomePage extends StatelessWidget {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.all(5.0),
                       padding: const EdgeInsets.all(20.0),
-                      height: 180,
+                      height: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.white,
@@ -217,29 +222,29 @@ class HomePage extends StatelessWidget {
                       child: Stack(
                         children: <Widget>[
                           Container(
-                            alignment: Alignment.centerLeft,
-                            height: 180,
+                            alignment: Alignment.center,
+                            height: 150,
                             child: Image.asset('assets/images/bluetooth.png'),
                           ),
                           Container(
                             alignment: Alignment.topLeft,
                             child: RichText(
-                              textAlign: TextAlign.justify,
+                              textAlign: TextAlign.left,
                               text: TextSpan(
                                 style: TextStyle(
                                   color: Color(0xFF7B7B7B),
                                   fontFamily: 'ProximaNova'
                                 ),
                                 children: <TextSpan>[
-                                  TextSpan(text: "Connectivity", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 17)),
+                                  TextSpan(text: "Connectivity", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w600, fontSize: 20)),
                                   TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
-                                  TextSpan(text: "Device is connected.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 13)),
+                                  TextSpan(text: "Device is connected.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 15)),
                                 ]
                               )
                             ),
                           ),
                           Container(
-                            alignment: Alignment.bottomCenter,
+                            alignment: Alignment.bottomLeft,
                             child: ElevatedButton(
                               onPressed: () {
                                 debugPrint('1');
@@ -249,7 +254,7 @@ class HomePage extends StatelessWidget {
                                 foregroundColor: Color(0xFF7B7B7B),
                                 side: BorderSide.none, shape: const StadiumBorder(),
                               ),
-                              child: Text('Connect', style: TextStyle(fontWeight: FontWeight.w700)),
+                              child: Text(' Connect ', style: TextStyle(fontFamily:'OpenSans', fontSize: 15)),
                             )
                           )
                         ],
@@ -262,7 +267,7 @@ class HomePage extends StatelessWidget {
                       alignment: Alignment.center,
                       margin: const EdgeInsets.all(5.0),
                       padding: const EdgeInsets.all(20.0),
-                      height: 180,
+                      height: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.white,
@@ -276,23 +281,23 @@ class HomePage extends StatelessWidget {
                       child: Stack(
                         children: <Widget>[
                           Container(
-                            alignment: Alignment.centerLeft,
-                            height: 180,
+                            alignment: Alignment.center,
+                            height: 260,
                             child: Image.asset('assets/images/journal.png'),
                           ),
                           Container(
                             alignment: Alignment.topLeft,
                             child: RichText(
-                              textAlign: TextAlign.justify,
+                              textAlign: TextAlign.left,
                               text: TextSpan(
                                 style: TextStyle(
                                   color: Color(0xFF7B7B7B),
                                   fontFamily: 'ProximaNova'
                                 ),
                                 children: <TextSpan>[
-                                  TextSpan(text: "Journal", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 17)),
+                                  TextSpan(text: "Journal", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w600, fontSize: 20)),
                                   TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
-                                  TextSpan(text: "You have not written a journal entry yet.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 13)),
+                                  TextSpan(text: "You have not written a journal entry yet.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 15)),
                                 ]
                               )
                             ),
@@ -301,14 +306,14 @@ class HomePage extends StatelessWidget {
                             alignment: Alignment.bottomCenter,
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => GeneratorPage()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => JournalPage()));
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Color(0xFFFF0000),
                                 foregroundColor: Colors.white,
                                 side: BorderSide.none, shape: const StadiumBorder(),
                               ),
-                              child: Text('New Entry', style: TextStyle(fontWeight: FontWeight.w700)),
+                              child: Text('New Entry', style: TextStyle(fontFamily: 'OpenSans', fontSize: 15)),
                             )
                           )
                         ],
@@ -349,9 +354,9 @@ class HomePage extends StatelessWidget {
                             fontFamily: 'ProximaNova',
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: "Calendar", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w800, fontSize: 17)),
+                            TextSpan(text: "Calendar", style: TextStyle(color: Color(0xFFFF0000), fontWeight: FontWeight.w600, fontSize: 20)),
                             TextSpan(text: "\n\n", style: TextStyle(fontSize:5)),
-                            TextSpan(text: "View upcoming session.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 13)),
+                            TextSpan(text: "View upcoming session.",  style: TextStyle(fontFamily: 'OpenSans', fontSize: 15)),
                           ]
                         )
                       ),

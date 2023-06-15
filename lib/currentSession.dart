@@ -64,17 +64,19 @@ class CurrentSessionPage extends StatelessWidget {
       
       
       body: SingleChildScrollView(
+        
+        
         child: Container(
           padding: const EdgeInsets.all(20),
           child: Column(
 
 
+            
+
+
             children: [
-              
-        
-              
 
-
+              
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Session Information", style: TextStyle(fontSize: 20,fontWeight: FontWeight.w800,color: Color(0xFF4D4D4D))),

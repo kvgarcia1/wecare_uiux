@@ -13,11 +13,11 @@ class ChatDetailPage extends StatefulWidget{
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
   List<ChatMessage> messages = [
-    ChatMessage(messageContent: "Hello, Will", messageType: "receiver"),
-    ChatMessage(messageContent: "How have you been?", messageType: "receiver"),
-    ChatMessage(messageContent: "Hey Kriss, I am doing fine dude. wbu?", messageType: "sender"),
-    ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
-    ChatMessage(messageContent: "Is there any thing wrong?", messageType: "sender"),
+    ChatMessage(messageContent: "Hey, Kristine! How are you?", messageType: "receiver"),
+    ChatMessage(messageContent: "Sending you the details for our video call meeting for your session later.", messageType: "receiver"),
+    ChatMessage(messageContent: "Click the following link to join the meeting:\nhttps://meet.jit.si/123456789\n\n=====\n\nJust want to dial in on your phone?\n\nDial-in: +1.512.647.1431 PIN: 451671292#\n\nClick this link to see the dial in phone numbers for this meeting \nhttps://meet.jit.si/static/dialInInfo.html?room=123456789", messageType: "receiver"),
+    ChatMessage(messageContent: "Got this, Doc! See you later!", messageType: "sender"),
+    
   ];
 
   @override
