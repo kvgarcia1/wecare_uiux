@@ -113,7 +113,7 @@ class _CurrentSessionPageState extends State<CurrentSessionPage> {
                 child: Text("15 June 2023 | 10AM - 11AM", style: TextStyle(fontSize: 15, fontFamily: 'OpenSans',color: Color(0xFF7B7B7B))),
               ),
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
 
 
               Row(
@@ -199,7 +199,7 @@ class _CurrentSessionPageState extends State<CurrentSessionPage> {
 
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
 
               Row(
                 children: [
@@ -257,10 +257,10 @@ class _CurrentSessionPageState extends State<CurrentSessionPage> {
                 ],
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
 
               SfCartesianChart(
-                title: ChartTitle(text: 'Heart Rate (BPM)'),
+                //title: ChartTitle(text: 'Heart Rate (BPM)'),
                 legend: Legend(isVisible: false),
                 // margin: EdgeInsets.all(15),
                 // backgroundColor: Colors.blue,
@@ -287,13 +287,13 @@ class _CurrentSessionPageState extends State<CurrentSessionPage> {
                 ),
                 primaryYAxis: NumericAxis(
                   interactiveTooltip: InteractiveTooltip(enable: false),
-                  visibleMinimum: 60,
+                  visibleMinimum: 70,
                   visibleMaximum: 110,
                   majorGridLines: MajorGridLines(width:0)
                 )
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
 
 
 
@@ -309,7 +309,7 @@ class _CurrentSessionPageState extends State<CurrentSessionPage> {
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentSessionPage()));
                               },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFE56AEFF),
+                          backgroundColor: Color(0xFF7B7B7B),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
