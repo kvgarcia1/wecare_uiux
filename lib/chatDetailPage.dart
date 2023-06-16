@@ -36,7 +36,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   onPressed: (){
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back,color: Color(0xFF7B7B7B),),
+                  icon: Icon(Icons.arrow_back,color: Color(0xFF7B7B7B)),
                 ),
                 SizedBox(width: 2,),
                 CircleAvatar(

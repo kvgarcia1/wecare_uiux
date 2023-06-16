@@ -1,9 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:unicons/unicons.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
-class CurrentSessionPage extends StatelessWidget {
+class CurrentSessionPage extends StatefulWidget {
   const CurrentSessionPage({Key? key}) : super(key: key);
+
+  @override
+  State<CurrentSessionPage> createState() => _CurrentSessionPageState();
+}
+
+class _CurrentSessionPageState extends State<CurrentSessionPage> {
+  late List<Data> _chartData;
+  late TooltipBehavior _tooltipBehavior;
+  late ZoomPanBehavior _zoomPanBehavior;
+
+  @override
+  void initState() {
+    _chartData = getChartData();
+    _tooltipBehavior = TooltipBehavior(enable: true);
+    _zoomPanBehavior = ZoomPanBehavior(
+        enablePinching: true,
+        enableDoubleTapZooming: true,
+        enableSelectionZooming: true,
+        selectionRectBorderColor: Colors.red,
+        selectionRectBorderWidth: 2,
+        selectionRectColor: Colors.grey,
+        enablePanning: true,
+        zoomMode: ZoomMode.x,
+        enableMouseWheelZooming: true,
+        maximumZoomLevel: 0.7);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -232,12 +259,39 @@ class CurrentSessionPage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              Container(
-                    height:200,
-                    alignment: Alignment.topCenter,
-                    color:Color(0xFFE7E9EC),
-                    child: const Text(''),
-                    ),
+              SfCartesianChart(
+                title: ChartTitle(text: 'Heart Rate (BPM)'),
+                legend: Legend(isVisible: false),
+                // margin: EdgeInsets.all(15),
+                // backgroundColor: Colors.blue,
+                plotAreaBorderColor: Color((0xFF56AEFF)),
+                plotAreaBackgroundColor: Colors.white,
+                tooltipBehavior: _tooltipBehavior,
+                zoomPanBehavior: _zoomPanBehavior,
+                series: <ChartSeries>[
+                  LineSeries<Data, DateTime>(
+                    dataSource: _chartData,
+                    xValueMapper: (Data data, _) => data.time,
+                    yValueMapper: (Data data, _) => data.value,
+                    dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
+                    enableTooltip: true,
+                    color: Color(0xFF56AEFF)
+                  )
+                ],
+                primaryXAxis: DateTimeAxis(
+                  edgeLabelPlacement: EdgeLabelPlacement.shift,
+                  interactiveTooltip: InteractiveTooltip(enable: false),
+                  rangePadding: ChartRangePadding.round,
+                  majorGridLines: MajorGridLines(width:0),
+                  labelFormat: DateFormat.HOUR24_MINUTE_SECOND
+                ),
+                primaryYAxis: NumericAxis(
+                  interactiveTooltip: InteractiveTooltip(enable: false),
+                  visibleMinimum: 60,
+                  visibleMaximum: 110,
+                  majorGridLines: MajorGridLines(width:0)
+                )
+              ),
 
               const SizedBox(height: 20),
 
@@ -398,4 +452,24 @@ class CurrentSessionPage extends StatelessWidget {
       ),
     );
   }
+  List<Data> getChartData() {
+    final List<Data> chartData = [
+      Data(time: DateTime(2023, 6, 15, 14, 30, 0), value:88),
+      Data(time: DateTime(2023, 6, 15, 14, 33, 0), value:89),
+      Data(time: DateTime(2023, 6, 15, 14, 38, 0), value:94),
+      Data(time: DateTime(2023, 6, 15, 14, 49, 0), value:93),
+      Data(time: DateTime(2023, 6, 15, 14, 56, 0), value:96),
+      Data(time: DateTime(2023, 6, 15, 15, 1, 0), value:99),
+      Data(time: DateTime(2023, 6, 15, 15, 14, 0), value:90),
+      Data(time: DateTime(2023, 6, 15, 15, 28, 0), value:88),
+      Data(time: DateTime(2023, 6, 15, 15, 40, 0), value:87),
+    ];
+    return chartData;
+  }
+}
+
+class Data{
+  final DateTime time;
+  double value;
+  Data({required this.time,required this.value});
 }

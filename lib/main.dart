@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unicons/unicons.dart';
-import './generator.dart';
+// import './generator.dart';
 import './profile.dart';
-// import './dashboard.dart';
+import './dashboard.dart';
 import './session.dart';
 import './messages.dart';
 import './currentSession.dart';
@@ -34,6 +34,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MyAppState extends ChangeNotifier {
+}
+
 class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -45,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _pages = <Widget>[
   HomePage(),
   ProfilePage(),
-  GeneratorPage(),
+  DashboardPage(),
   SessionPage(),
   MessagesPage(),
 ];
