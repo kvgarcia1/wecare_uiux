@@ -40,216 +40,212 @@ class _DashboardPageState extends State<DashboardPage> {
           physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 10,
-                    child: Container(
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.all(5.0),
-                      padding: const EdgeInsets.all(20.0),
-                      height: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
+              Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.all(5.0),
+                padding: const EdgeInsets.all(20.0),
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                ),
+                child: Align(      
+                  alignment: Alignment.center,
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: TextStyle(
+                        color: Color(0xFF7B7B7B),
+                        fontFamily: 'ProximaNova'
                       ),
-                      child: Align(      
-                        alignment: Alignment.center,
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            style: TextStyle(
-                              color: Color(0xFF7B7B7B),
-                              fontFamily: 'ProximaNova'
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(text: "Rehabilitation Progress", style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF56AEFF), fontSize: 18, fontFamily: 'OpenSans')),
-                              TextSpan(text: "\n", style: TextStyle(fontSize:5)),
-                              TextSpan(text: "12 of 15",  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600)),
-                            ]
-                          )
-                        ),
-                      ),
-                    ),
+                      children: <TextSpan>[
+                        TextSpan(text: "Rehabilitation Progress", style: TextStyle(fontWeight: FontWeight.w600, color: Color(0xFF56AEFF), fontSize: 18, fontFamily: 'OpenSans')),
+                        TextSpan(text: "\n", style: TextStyle(fontSize:5)),
+                        TextSpan(text: "12 of 15",  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600)),
+                      ]
+                    )
                   ),
-                  
-                ]
-              ),
-              
-              // Align(
-              //   alignment: Alignment.centerLeft,
-              //   child: Text(
-              //     'Charts',
-              //     style: TextStyle(
-              //       color: Color(0xFF4D4D4D),fontSize: 25, fontFamily: 'ProximaNova',fontWeight: FontWeight.w700
-              //     ),
-              //   // textAlign: TextAlign.start,
-              //   // textDirection: TextDirection.ltr,
-              //   ),
-              // ),
-              SizedBox(height: 10),
-              SfCartesianChart(
-                title: ChartTitle(text: 'Heart Rate (BPM)'),
-                legend: Legend(isVisible: false),
-                // margin: EdgeInsets.all(15),
-                // backgroundColor: Colors.blue,
-                plotAreaBorderColor: Color((0xFF56AEFF)),
-                plotAreaBackgroundColor: Colors.white,
-                tooltipBehavior: _tooltipBehavior,
-                zoomPanBehavior: _zoomPanBehavior,
-                series: <ChartSeries>[
-                  LineSeries<Data, DateTime>(
-                    dataSource: _chartData,
-                    xValueMapper: (Data data, _) => data.date,
-                    yValueMapper: (Data data, _) => data.value,
-                    dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
-                    enableTooltip: true,
-                    color: Color(0xFF56AEFF)
-                  )
-                ],
-                primaryXAxis: DateTimeAxis(
-                  edgeLabelPlacement: EdgeLabelPlacement.shift,
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  rangePadding: ChartRangePadding.round,
-                  majorGridLines: MajorGridLines(width:0),
                 ),
-                primaryYAxis: NumericAxis(
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  visibleMinimum: 60,
-                  visibleMaximum: 110,
-                  majorGridLines: MajorGridLines(width:0)
+              ),
+              SizedBox(height: 10),
+              SizedBox(
+                height: 250,
+                child: SfCartesianChart(
+                  title: ChartTitle(text: 'Heart Rate (BPM)'),
+                  legend: Legend(isVisible: false),
+                  // margin: EdgeInsets.all(15),
+                  // backgroundColor: Colors.blue,
+                  plotAreaBorderColor: Color((0xFF56AEFF)),
+                  plotAreaBackgroundColor: Colors.white,
+                  tooltipBehavior: _tooltipBehavior,
+                  zoomPanBehavior: _zoomPanBehavior,
+                  series: <ChartSeries>[
+                    LineSeries<Data, DateTime>(
+                      dataSource: _chartData,
+                      xValueMapper: (Data data, _) => data.date,
+                      yValueMapper: (Data data, _) => data.value,
+                      markerSettings: MarkerSettings(isVisible: true),
+                      dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
+                      enableTooltip: true,
+                      color: Color(0xFF56AEFF)
+                    )
+                  ],
+                  primaryXAxis: DateTimeAxis(
+                    edgeLabelPlacement: EdgeLabelPlacement.shift,
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    rangePadding: ChartRangePadding.round,
+                    majorGridLines: MajorGridLines(width:0),
+                  ),
+                  primaryYAxis: NumericAxis(
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    visibleMinimum: 60,
+                    visibleMaximum: 110,
+                    majorGridLines: MajorGridLines(width:0)
+                  )
                 )
               ),
-              SizedBox(height: 10),
-              SfCartesianChart(
-                title: ChartTitle(text: 'Oxygen'),
-                legend: Legend(isVisible: false),
-                // margin: EdgeInsets.all(15),
-                // backgroundColor: Colors.blue,
-                plotAreaBorderColor: Color((0xFF7B7B7B)),
-                plotAreaBackgroundColor: Colors.white,
-                tooltipBehavior: _tooltipBehavior,
-                zoomPanBehavior: _zoomPanBehavior,
-                series: <ChartSeries>[
-                  LineSeries<Data, DateTime>(
-                    dataSource: _chartData,
-                    xValueMapper: (Data data, _) => data.date,
-                    yValueMapper: (Data data, _) => data.value,
-                    dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
-                    enableTooltip: true,
-                    color: Color(0xFF56AEFF)
+              SizedBox(
+                height: 250,
+                child: SfCartesianChart(
+                  title: ChartTitle(text: 'Oxygen (%)'),
+                  legend: Legend(isVisible: false),
+                  // margin: EdgeInsets.all(15),
+                  // backgroundColor: Colors.blue,
+                  plotAreaBorderColor: Color((0xFF56AEFF)),
+                  plotAreaBackgroundColor: Colors.white,
+                  tooltipBehavior: _tooltipBehavior,
+                  zoomPanBehavior: _zoomPanBehavior,
+                  series: <ChartSeries>[
+                    LineSeries<Data, DateTime>(
+                      dataSource: _chartData,
+                      xValueMapper: (Data data, _) => data.date,
+                      yValueMapper: (Data data, _) => data.value,
+                      markerSettings: MarkerSettings(isVisible: true),
+                      dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
+                      enableTooltip: true,
+                      color: Color(0xFF56AEFF)
+                    )
+                  ],
+                  primaryXAxis: DateTimeAxis(
+                    edgeLabelPlacement: EdgeLabelPlacement.shift,
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    rangePadding: ChartRangePadding.round,
+                    majorGridLines: MajorGridLines(width:0),
+                  ),
+                  primaryYAxis: NumericAxis(
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    visibleMinimum: 60,
+                    visibleMaximum: 110,
+                    majorGridLines: MajorGridLines(width:0)
                   )
-                ],
-                primaryXAxis: DateTimeAxis(
-                  edgeLabelPlacement: EdgeLabelPlacement.shift,
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  rangePadding: ChartRangePadding.round,
-                  majorGridLines: MajorGridLines(width:0)
-                ),
-                primaryYAxis: NumericAxis(
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  visibleMinimum: 60,
-                  visibleMaximum: 110,
-                  majorGridLines: MajorGridLines(width:0)
                 )
               ),
-              SizedBox(height: 10),
-              SfCartesianChart(
-                title: ChartTitle(text: 'Blood Pressure (MMHG)'),
-                legend: Legend(isVisible: false),
-                // margin: EdgeInsets.all(15),
-                // backgroundColor: Colors.blue,
-                plotAreaBorderColor: Color((0xFF7B7B7B)),
-                plotAreaBackgroundColor: Colors.white,
-                tooltipBehavior: _tooltipBehavior,
-                zoomPanBehavior: _zoomPanBehavior,
-                series: <ChartSeries>[
-                  LineSeries<Data, DateTime>(
-                    dataSource: _chartData,
-                    xValueMapper: (Data data, _) => data.date,
-                    yValueMapper: (Data data, _) => data.value,
-                    dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
-                    enableTooltip: true,
-                    color: Color(0xFF56AEFF)
+              SizedBox(
+                height: 250,
+                child: SfCartesianChart(
+                  title: ChartTitle(text: 'Blood Pressure (MMHG)'),
+                  legend: Legend(isVisible: false),
+                  // margin: EdgeInsets.all(15),
+                  // backgroundColor: Colors.blue,
+                  plotAreaBorderColor: Color((0xFF56AEFF)),
+                  plotAreaBackgroundColor: Colors.white,
+                  tooltipBehavior: _tooltipBehavior,
+                  zoomPanBehavior: _zoomPanBehavior,
+                  series: <ChartSeries>[
+                    LineSeries<Data, DateTime>(
+                      dataSource: _chartData,
+                      xValueMapper: (Data data, _) => data.date,
+                      yValueMapper: (Data data, _) => data.value,
+                      markerSettings: MarkerSettings(isVisible: true),
+                      dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
+                      enableTooltip: true,
+                      color: Color(0xFF56AEFF)
+                    )
+                  ],
+                  primaryXAxis: DateTimeAxis(
+                    edgeLabelPlacement: EdgeLabelPlacement.shift,
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    rangePadding: ChartRangePadding.round,
+                    majorGridLines: MajorGridLines(width:0),
+                  ),
+                  primaryYAxis: NumericAxis(
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    visibleMinimum: 60,
+                    visibleMaximum: 110,
+                    majorGridLines: MajorGridLines(width:0)
                   )
-                ],
-                primaryXAxis: DateTimeAxis(
-                  edgeLabelPlacement: EdgeLabelPlacement.shift,
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  rangePadding: ChartRangePadding.round,
-                  majorGridLines: MajorGridLines(width:0)
-                ),
-                primaryYAxis: NumericAxis(
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  visibleMinimum: 60,
-                  visibleMaximum: 110,
-                  majorGridLines: MajorGridLines(width:0)
                 )
               ),
-              SizedBox(height: 10),
-              SfCartesianChart(
-                title: ChartTitle(text: 'Cadence (RPM)'),
-                legend: Legend(isVisible: false),
-                // margin: EdgeInsets.all(15),
-                // backgroundColor: Colors.blue,
-                plotAreaBorderColor: Color((0xFF7B7B7B)),
-                plotAreaBackgroundColor: Colors.white,
-                tooltipBehavior: _tooltipBehavior,
-                zoomPanBehavior: _zoomPanBehavior,
-                series: <ChartSeries>[
-                  LineSeries<Data, DateTime>(
-                    dataSource: _chartData,
-                    xValueMapper: (Data data, _) => data.date,
-                    yValueMapper: (Data data, _) => data.value,
-                    dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
-                    enableTooltip: true,
-                    color: Color(0xFF56AEFF)
+              SizedBox(
+                height: 250,
+                child: SfCartesianChart(
+                  title: ChartTitle(text: 'Cadence (RPM)'),
+                  legend: Legend(isVisible: false),
+                  // margin: EdgeInsets.all(15),
+                  // backgroundColor: Colors.blue,
+                  plotAreaBorderColor: Color((0xFF56AEFF)),
+                  plotAreaBackgroundColor: Colors.white,
+                  tooltipBehavior: _tooltipBehavior,
+                  zoomPanBehavior: _zoomPanBehavior,
+                  series: <ChartSeries>[
+                    LineSeries<Data, DateTime>(
+                      dataSource: _chartData,
+                      xValueMapper: (Data data, _) => data.date,
+                      yValueMapper: (Data data, _) => data.value,
+                      markerSettings: MarkerSettings(isVisible: true),
+                      dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
+                      enableTooltip: true,
+                      color: Color(0xFF56AEFF)
+                    )
+                  ],
+                  primaryXAxis: DateTimeAxis(
+                    edgeLabelPlacement: EdgeLabelPlacement.shift,
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    rangePadding: ChartRangePadding.round,
+                    majorGridLines: MajorGridLines(width:0),
+                  ),
+                  primaryYAxis: NumericAxis(
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    visibleMinimum: 60,
+                    visibleMaximum: 110,
+                    majorGridLines: MajorGridLines(width:0)
                   )
-                ],
-                primaryXAxis: DateTimeAxis(
-                  edgeLabelPlacement: EdgeLabelPlacement.shift,
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  rangePadding: ChartRangePadding.round,
-                  majorGridLines: MajorGridLines(width:0)
-                ),
-                primaryYAxis: NumericAxis(
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  visibleMinimum: 60,
-                  visibleMaximum: 110,
-                  majorGridLines: MajorGridLines(width:0)
                 )
               ),
-              SizedBox(height: 10),
-              SfCartesianChart(
-                title: ChartTitle(text: 'Resistance (units)'),
-                legend: Legend(isVisible: false),
-                // margin: EdgeInsets.all(15),
-                // backgroundColor: Colors.blue,
-                plotAreaBorderColor: Color((0xFF7B7B7B)),
-                plotAreaBackgroundColor: Colors.white,
-                tooltipBehavior: _tooltipBehavior,
-                zoomPanBehavior: _zoomPanBehavior,
-                series: <ChartSeries>[
-                  LineSeries<Data, DateTime>(
-                    dataSource: _chartData,
-                    xValueMapper: (Data data, _) => data.date,
-                    yValueMapper: (Data data, _) => data.value,
-                    dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
-                    enableTooltip: true,
-                    color: Color(0xFF56AEFF)
+              SizedBox(
+                height: 250,
+                child: SfCartesianChart(
+                  title: ChartTitle(text: 'Resistance (units)'),
+                  legend: Legend(isVisible: false),
+                  // margin: EdgeInsets.all(15),
+                  // backgroundColor: Colors.blue,
+                  plotAreaBorderColor: Color((0xFF56AEFF)),
+                  plotAreaBackgroundColor: Colors.white,
+                  tooltipBehavior: _tooltipBehavior,
+                  zoomPanBehavior: _zoomPanBehavior,
+                  series: <ChartSeries>[
+                    LineSeries<Data, DateTime>(
+                      dataSource: _chartData,
+                      xValueMapper: (Data data, _) => data.date,
+                      yValueMapper: (Data data, _) => data.value,
+                      markerSettings: MarkerSettings(isVisible: true),
+                      dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
+                      enableTooltip: true,
+                      color: Color(0xFF56AEFF)
+                    )
+                  ],
+                  primaryXAxis: DateTimeAxis(
+                    edgeLabelPlacement: EdgeLabelPlacement.shift,
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    rangePadding: ChartRangePadding.round,
+                    majorGridLines: MajorGridLines(width:0),
+                  ),
+                  primaryYAxis: NumericAxis(
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    visibleMinimum: 60,
+                    visibleMaximum: 110,
+                    majorGridLines: MajorGridLines(width:0)
                   )
-                ],
-                primaryXAxis: DateTimeAxis(
-                  edgeLabelPlacement: EdgeLabelPlacement.shift,
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  rangePadding: ChartRangePadding.round,
-                  majorGridLines: MajorGridLines(width:0)
-                ),
-                primaryYAxis: NumericAxis(
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  visibleMinimum: 60,
-                  visibleMaximum: 110,
-                  majorGridLines: MajorGridLines(width:0)
                 )
               ),
             ],

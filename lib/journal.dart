@@ -28,32 +28,17 @@ class JournalPage extends StatelessWidget {
           foregroundColor: Color(0xFF7B7B7B),
           scrolledUnderElevation: 0.0,
         ),
-
-        
-
-        
       ),
-
-      
       body: SingleChildScrollView(
-        
-        
+        physics: BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.all(20),
           child: Column(
-
-
-            
-
-
             children: <Widget> [
-
-              
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("     How are you feeling \n     today?", style: TextStyle(fontSize: 28,fontWeight: FontWeight.w800,color: Color(0xFF4D4D4D))),
               ),
-              
               const SizedBox(height: 50),
 
               Row(

@@ -182,38 +182,42 @@ class _SessionDetailPageState extends State<SessionDetailPage> {
                 ],
               ),
               const SizedBox(height: 20),
-              SfCartesianChart(
-                title: ChartTitle(text: 'Heart Rate (BPM)'),
-                legend: Legend(isVisible: false),
-                // margin: EdgeInsets.all(15),
-                // backgroundColor: Colors.blue,
-                plotAreaBorderColor: Color((0xFF56AEFF)),
-                plotAreaBackgroundColor: Colors.white,
-                tooltipBehavior: _tooltipBehavior,
-                zoomPanBehavior: _zoomPanBehavior,
-                series: <ChartSeries>[
-                  LineSeries<Data, DateTime>(
-                    dataSource: _chartData,
-                    xValueMapper: (Data data, _) => data.time,
-                    yValueMapper: (Data data, _) => data.value,
-                    dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
-                    enableTooltip: true,
-                    color: Color(0xFF56AEFF)
+              SizedBox(
+                height: 250,
+                child: SfCartesianChart(
+                  title: ChartTitle(text: 'Heart Rate (BPM)'),
+                  legend: Legend(isVisible: false),
+                  // margin: EdgeInsets.all(15),
+                  // backgroundColor: Colors.blue,
+                  plotAreaBorderColor: Color((0xFF56AEFF)),
+                  plotAreaBackgroundColor: Colors.white,
+                  tooltipBehavior: _tooltipBehavior,
+                  zoomPanBehavior: _zoomPanBehavior,
+                  series: <ChartSeries>[
+                    LineSeries<Data, DateTime>(
+                      dataSource: _chartData,
+                      xValueMapper: (Data data, _) => data.time,
+                      yValueMapper: (Data data, _) => data.value,
+                      markerSettings: MarkerSettings(isVisible: true),
+                      dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Color(0xFF7B7B7B), fontSize: 12, fontFamily: 'OpenSans', fontWeight: FontWeight.w600)),
+                      enableTooltip: true,
+                      color: Color(0xFF56AEFF)
+                    )
+                  ],
+                  primaryXAxis: DateTimeAxis(
+                    edgeLabelPlacement: EdgeLabelPlacement.shift,
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    rangePadding: ChartRangePadding.round,
+                    majorGridLines: MajorGridLines(width:0),
+                  ),
+                  primaryYAxis: NumericAxis(
+                    interactiveTooltip: InteractiveTooltip(enable: false),
+                    visibleMinimum: 60,
+                    visibleMaximum: 110,
+                    majorGridLines: MajorGridLines(width:0),
+                    interval: 10
                   )
-                ],
-                primaryXAxis: DateTimeAxis(
-                  edgeLabelPlacement: EdgeLabelPlacement.shift,
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  rangePadding: ChartRangePadding.round,
-                  majorGridLines: MajorGridLines(width:0),
-                  labelFormat: DateFormat.HOUR24_MINUTE_SECOND
                 ),
-                primaryYAxis: NumericAxis(
-                  interactiveTooltip: InteractiveTooltip(enable: false),
-                  visibleMinimum: 60,
-                  visibleMaximum: 110,
-                  majorGridLines: MajorGridLines(width:0)
-                )
               ),
               Container(
                 alignment: Alignment.center,
