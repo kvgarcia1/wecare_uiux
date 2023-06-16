@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wecare_uiux/sessionDetailPage.dart';
 // import './widgets/sessionList.dart';
 
 class SessionDates{
@@ -62,7 +63,10 @@ class _SessionPageState extends State<SessionPage> {
                   subtitle: Text(sessionDates[index].time, style: TextStyle(fontFamily: 'ProximaNova', fontSize: 16)),
                   tileColor: Colors.white,
                   textColor: Color(0xFF7B7B7B),
-                  onTap: (){}
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context){return SessionDetailPage();
+                  }));
+                  }
                 );
               },
               separatorBuilder: (context, index) {
