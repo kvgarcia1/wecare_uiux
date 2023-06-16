@@ -19,9 +19,9 @@ class MessagesPage extends StatefulWidget {
 
 class _MessagesPageState extends State<MessagesPage> {
   List<ChatUsers> chatUsers = [
-    ChatUsers(name: "Dr. Jane Russel", messageText: "Got this, Doc! See you later!", imageURL: "assets/images/userImage1.jpg", time: "Now"),
-    ChatUsers(name: "Dr. Gladys Murphy", messageText: "This is noted!", imageURL: "assets/images/userImage2.jpg", time: "Yesterday"),
-    ChatUsers(name: "Dr. Jorge Henry", messageText: "Click the following link to join", imageURL: "assets/images/userImage3.jpg", time: "1 Jun"),
+    ChatUsers(name: "Angelica Shalene Estera", messageText: "Got this, Doc! See you later!", imageURL: "assets/images/profiledoc.png", time: "Now"),
+    ChatUsers(name: "Rya Zenilde Cawaling", messageText: "This is noted!", imageURL: "assets/images/p2.png", time: "Yesterday"),
+    ChatUsers(name: "Daryl John Libiano", messageText: "Click the following link to join", imageURL: "assets/images/p3.png", time: "1 Jun"),
     // ChatUsers(name: "Philip Fox", messageText: "Busy! Call me in 20 mins", imageURL: "images/userImage4.jpeg", time: "28 Mar"),
     // ChatUsers(name: "Debra Hawkins", messageText: "Thankyou, It's awesome", imageURL: "images/userImage5.jpeg", time: "23 Mar"),
     // ChatUsers(name: "Jacob Pena", messageText: "will update you in evening", imageURL: "images/userImage6.jpeg", time: "17 Mar"),

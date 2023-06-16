@@ -41,7 +41,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                 SizedBox(width: 2,),
                 CircleAvatar(
                   maxRadius: 20,
-                  backgroundImage: AssetImage('assets/images/userImage1.jpg'),
+                  backgroundImage: AssetImage('assets/images/profiledoc.png'),
                 ),
                 SizedBox(width: 12,),
                 Expanded(
@@ -49,7 +49,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text("Jane Russel",style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600, fontFamily: 'OpenSans', color: Color(0xFF7B7B7B))),
+                      Text("Angelica Shalene Estera",style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600, fontFamily: 'OpenSans', color: Color(0xFF7B7B7B))),
                       SizedBox(height: 6,),
                       Text("Online",style: TextStyle(color: Color(0xFF7B7B7B), fontSize: 13, fontFamily: 'OpenSans')),
                     ],
