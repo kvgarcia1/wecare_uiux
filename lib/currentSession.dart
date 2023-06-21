@@ -91,7 +91,7 @@ class _CurrentSessionPageState extends State<CurrentSessionPage> {
       
       
       body: SingleChildScrollView(
-        
+        physics: BouncingScrollPhysics(),
         
         child: Container(
           padding: const EdgeInsets.all(20),

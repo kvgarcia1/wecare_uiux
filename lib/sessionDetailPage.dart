@@ -59,6 +59,7 @@ class _SessionDetailPageState extends State<SessionDetailPage> {
         ),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.all(20),
           child: Column(
